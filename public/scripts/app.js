@@ -1,17 +1,22 @@
 'use strict';
 
+var appData = {
+  title: 'Indecision App',
+  subTitle: 'Organize you work!'
+};
+
 var template = React.createElement(
   'div',
   null,
   React.createElement(
     'h1',
     null,
-    'Indecision App'
+    appData.title
   ),
   React.createElement(
     'p',
     null,
-    'This is JSX from app.js!'
+    appData.subTitle
   )
 );
 var appRoot = document.getElementById('app');
