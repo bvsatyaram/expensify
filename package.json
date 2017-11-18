@@ -6,6 +6,9 @@
   "author": "BV Satyaram <bvsatyaram@gmail.com>",
   "license": "MIT",
   "dependencies": {
+    "babel": "^6.23.0",
+    "babel-preset-env": "^1.6.1",
+    "babel-preset-react": "^6.24.1",
     "live-server": "^1.2.0"
   }
 }
