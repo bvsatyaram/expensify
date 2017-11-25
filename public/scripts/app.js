@@ -2,69 +2,73 @@
 
 var appData = {
   title: 'Indecision App',
-  subTitle: 'Organize your work!'
+  subTitle: 'Organize your work!',
+  options: ['Options 1', 'Options 2']
 };
 
-var template = React.createElement(
-  'div',
-  null,
-  React.createElement(
-    'h1',
-    null,
-    appData.title
-  ),
-  React.createElement(
-    'p',
-    null,
-    appData.subTitle
-  )
-);
+var onFormSubmit = function onFormSubmit(e) {
+  e.preventDefault();
+
+  var option = e.target.elements.option.value;
+  if (option) {
+    appData.options.push(option);
+  }
+  e.target.elements.option.value = '';
+  renderApp();
+};
+
+var clearOptions = function clearOptions(e) {
+  e.preventDefault();
+
+  appData.options = [];
+  renderApp();
+};
+
 var appRoot = document.getElementById('app');
 
-var counter = {
-  val: 0,
-  decrement: function decrement() {
-    counter.val--;
-    renderApp();
-  },
-  increment: function increment() {
-    counter.val++;
-    renderApp();
-  },
-  reset: function reset() {
-    counter.val = 0;
-    renderApp();
-  }
-};
-
 var renderApp = function renderApp() {
-  var counterTemplate = React.createElement(
+  var template = React.createElement(
     'div',
     null,
     React.createElement(
-      'h2',
+      'h1',
       null,
-      'Count: ',
-      counter.val
+      appData.title
     ),
     React.createElement(
-      'button',
-      { onClick: counter.decrement },
-      '-1'
+      'p',
+      null,
+      appData.subTitle
     ),
     React.createElement(
-      'button',
-      { onClick: counter.increment },
-      '+1'
+      'ul',
+      null,
+      appData.options.map(function (option, index) {
+        return React.createElement(
+          'li',
+          { key: 'option-' + index },
+          option
+        );
+      })
     ),
     React.createElement(
-      'button',
-      { onClick: counter.reset },
-      'Reset'
+      'form',
+      { onSubmit: onFormSubmit },
+      React.createElement('input', { type: 'text', name: 'option', autoFocus: true }),
+      React.createElement(
+        'button',
+        { type: 'submit' },
+        'Add Option'
+      ),
+      React.createElement(
+        'button',
+        { onClick: clearOptions },
+        'Remove All'
+      )
     )
   );
 
-  ReactDOM.render(counterTemplate, appRoot);
+  ReactDOM.render(template, appRoot);
 };
 
 renderApp();

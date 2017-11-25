@@ -1,43 +1,50 @@
 const appData = {
   title: 'Indecision App',
-  subTitle: 'Organize your work!'
+  subTitle: 'Organize your work!',
+  options: ['Options 1', 'Options 2']
 };
 
-const template = (
-  <div>
-    <h1>{appData.title}</h1>
-    <p>{appData.subTitle}</p>
-  </div>
-);
+const onFormSubmit = (e) => {
+  e.preventDefault();
+
+  const option = e.target.elements.option.value;
+  if (option) {
+    appData.options.push(option);
+  }
+  e.target.elements.option.value = '';
+  renderApp();
+};
+
+const clearOptions = (e) => {
+  e.preventDefault();
+
+  appData.options = [];
+  renderApp();
+}
+
 const appRoot = document.getElementById('app');
 
-const counter = {
-  val: 0,
-  decrement() {
-    counter.val--;
-    renderApp();
-  },
-  increment() {
-    counter.val++;
-    renderApp();
-  },
-  reset() {
-    counter.val = 0;
-    renderApp();
-  }
-};
-
 const renderApp = () => {
-  const counterTemplate = (
+  const template = (
     <div>
-      <h2>Count: {counter.val}</h2>
-      <button onClick={counter.decrement}>-1</button>
-      <button onClick={counter.increment}>+1</button>
-      <button onClick={counter.reset}>Reset</button>
+      <h1>{appData.title}</h1>
+      <p>{appData.subTitle}</p>
+      <ul>
+        {
+          appData.options.map((option, index) => {
+            return <li key={'option-' + index}>{option}</li>
+          })
+        }
+      </ul>
+      <form onSubmit={onFormSubmit}>
+        <input type='text' name='option' autoFocus />
+        <button type='submit'>Add Option</button>
+        <button onClick={clearOptions}>Remove All</button>
+      </form>
     </div>
   );
   
-  ReactDOM.render(counterTemplate, appRoot);
+  ReactDOM.render(template, appRoot);
 }
 
 renderApp();
