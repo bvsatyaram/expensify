@@ -24,6 +24,13 @@ var clearOptions = function clearOptions(e) {
   renderApp();
 };
 
+var pickOption = function pickOption(e) {
+  e.preventDefault();
+
+  var randNum = Math.floor(Math.random() * appData.options.length);
+  console.log(appData.options[randNum]);
+};
+
 var appRoot = document.getElementById('app');
 
 var renderApp = function renderApp() {
@@ -64,6 +71,13 @@ var renderApp = function renderApp() {
         'button',
         { onClick: clearOptions },
         'Remove All'
+      ),
+      React.createElement('br', null),
+      React.createElement('br', null),
+      React.createElement(
+        'button',
+        { onClick: pickOption },
+        'What Should I do?'
       )
     )
   );

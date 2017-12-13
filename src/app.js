@@ -22,6 +22,13 @@ const clearOptions = (e) => {
   renderApp();
 }
 
+const pickOption = (e) => {
+  e.preventDefault();
+
+  const randNum = Math.floor(Math.random()*appData.options.length);
+  console.log(appData.options[randNum]);
+}
+
 const appRoot = document.getElementById('app');
 
 const renderApp = () => {
@@ -40,10 +47,13 @@ const renderApp = () => {
         <input type='text' name='option' autoFocus />
         <button type='submit'>Add Option</button>
         <button onClick={clearOptions}>Remove All</button>
+        <br />
+        <br />
+        <button onClick={pickOption}>What Should I do?</button>
       </form>
     </div>
   );
-  
+
   ReactDOM.render(template, appRoot);
 }
 
