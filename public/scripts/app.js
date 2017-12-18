@@ -50,11 +50,16 @@ var Action = function (_React$Component2) {
   }
 
   _createClass(Action, [{
+    key: 'handleClick',
+    value: function handleClick() {
+      console.log('Action clicked');
+    }
+  }, {
     key: 'render',
     value: function render() {
       return React.createElement(
         'button',
-        null,
+        { onClick: this.handleClick },
         'What should I do?'
       );
     }
@@ -132,16 +137,38 @@ var NewOption = function (_React$Component5) {
   }
 
   _createClass(NewOption, [{
+    key: 'clearOptions',
+    value: function clearOptions(e) {
+      e.preventDefault();
+
+      console.log('Clear all options');
+    }
+  }, {
+    key: 'addOption',
+    value: function addOption(e) {
+      e.preventDefault();
+      console.log('Handle add option');
+      var val = e.target.elements.newOption.value.trim();
+      if (val) {
+        console.log('The value is ' + val);
+      }
+    }
+  }, {
     key: 'render',
     value: function render() {
       return React.createElement(
         'form',
-        null,
-        React.createElement('input', { type: 'text' }),
+        { onSubmit: this.addOption },
+        React.createElement('input', { type: 'text', name: 'newOption' }),
         React.createElement(
           'button',
           { type: 'submit' },
           'Add a New Option'
+        ),
+        React.createElement(
+          'button',
+          { onClick: this.clearOptions },
+          'Clear All Options'
         )
       );
     }

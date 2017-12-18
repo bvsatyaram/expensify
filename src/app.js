@@ -10,8 +10,12 @@ class Header extends React.Component {
 }
 
 class Action extends React.Component {
+  handleClick () {
+    console.log('Action clicked');
+  }
+
   render () {
-    return <button>What should I do?</button>;
+    return <button onClick={this.handleClick}>What should I do?</button>;
   }
 }
 
@@ -33,11 +37,27 @@ class Options extends React.Component {
 }
 
 class NewOption extends React.Component {
+  clearOptions (e) {
+    e.preventDefault();
+
+    console.log('Clear all options');
+  }
+
+  addOption (e) {
+    e.preventDefault();
+    console.log('Handle add option');
+    const val = e.target.elements.newOption.value.trim();
+    if (val) {
+      console.log(`The value is ${val}`)      
+    }
+  }
+
   render () {
     return (
-      <form>
-        <input type='text' />
+      <form onSubmit={this.addOption}>
+        <input type='text' name='newOption' />
         <button type='submit'>Add a New Option</button>
+        <button onClick={this.clearOptions}>Clear All Options</button>
       </form>
     )
   }
