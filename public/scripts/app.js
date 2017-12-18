@@ -137,13 +137,6 @@ var NewOption = function (_React$Component5) {
   }
 
   _createClass(NewOption, [{
-    key: 'clearOptions',
-    value: function clearOptions(e) {
-      e.preventDefault();
-
-      console.log('Clear all options');
-    }
-  }, {
     key: 'addOption',
     value: function addOption(e) {
       e.preventDefault();
@@ -167,7 +160,7 @@ var NewOption = function (_React$Component5) {
         ),
         React.createElement(
           'button',
-          { onClick: this.clearOptions },
+          { onClick: this.props.clearOptions },
           'Clear All Options'
         )
       );
@@ -180,24 +173,33 @@ var NewOption = function (_React$Component5) {
 var App = function (_React$Component6) {
   _inherits(App, _React$Component6);
 
-  function App() {
+  function App(props) {
     _classCallCheck(this, App);
 
-    return _possibleConstructorReturn(this, (App.__proto__ || Object.getPrototypeOf(App)).apply(this, arguments));
+    var _this6 = _possibleConstructorReturn(this, (App.__proto__ || Object.getPrototypeOf(App)).call(this, props));
+
+    _this6.options = ['Eat', 'Sleep', 'Code'];
+
+    _this6.clearOptions = _this6.clearOptions.bind(_this6);
+    return _this6;
   }
 
   _createClass(App, [{
+    key: 'clearOptions',
+    value: function clearOptions(e) {
+      e.preventDefault();
+      console.log(this.options);
+    }
+  }, {
     key: 'render',
     value: function render() {
-      var options = ['Eat', 'Sleep', 'Code'];
-
       return React.createElement(
         'main',
         null,
         React.createElement(Header, null),
         React.createElement(Action, null),
-        React.createElement(Options, { options: options }),
-        React.createElement(NewOption, null)
+        React.createElement(Options, { options: this.options }),
+        React.createElement(NewOption, { clearOptions: this.clearOptions })
       );
     }
   }]);

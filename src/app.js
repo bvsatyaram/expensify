@@ -37,12 +37,6 @@ class Options extends React.Component {
 }
 
 class NewOption extends React.Component {
-  clearOptions (e) {
-    e.preventDefault();
-
-    console.log('Clear all options');
-  }
-
   addOption (e) {
     e.preventDefault();
     console.log('Handle add option');
@@ -57,26 +51,37 @@ class NewOption extends React.Component {
       <form onSubmit={this.addOption}>
         <input type='text' name='newOption' />
         <button type='submit'>Add a New Option</button>
-        <button onClick={this.clearOptions}>Clear All Options</button>
+        <button onClick={this.props.clearOptions}>Clear All Options</button>
       </form>
     )
   }
 }
 
 class App extends React.Component {
-  render () {
-    const options = [
+  constructor (props) {
+    super(props);
+
+    this.options = [
       'Eat',
       'Sleep',
       'Code'
     ];
 
+    this.clearOptions = this.clearOptions.bind(this);
+  }
+
+  clearOptions (e) {
+    e.preventDefault();
+    console.log(this.options);
+  }
+
+  render () {
     return (
       <main>
         <Header />
         <Action />
-        <Options options={options} />
-        <NewOption />
+        <Options options={this.options} />
+        <NewOption clearOptions={this.clearOptions} />
       </main>
     );
   }
