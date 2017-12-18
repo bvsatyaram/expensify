@@ -78,7 +78,7 @@ var Option = function (_React$Component3) {
       return React.createElement(
         'p',
         null,
-        'Option'
+        this.props.children
       );
     }
   }]);
@@ -101,9 +101,20 @@ var Options = function (_React$Component4) {
       return React.createElement(
         'div',
         null,
-        React.createElement(Option, null),
-        React.createElement(Option, null),
-        React.createElement(Option, null)
+        React.createElement(
+          'p',
+          null,
+          'There are ',
+          this.props.options.length,
+          ' item(s).'
+        ),
+        this.props.options.map(function (name, index) {
+          return React.createElement(
+            Option,
+            { key: 'option-' + index },
+            name
+          );
+        })
       );
     }
   }]);
@@ -151,12 +162,14 @@ var App = function (_React$Component6) {
   _createClass(App, [{
     key: 'render',
     value: function render() {
+      var options = ['Eat', 'Sleep', 'Code'];
+
       return React.createElement(
         'main',
         null,
         React.createElement(Header, null),
         React.createElement(Action, null),
-        React.createElement(Options, null),
+        React.createElement(Options, { options: options }),
         React.createElement(NewOption, null)
       );
     }

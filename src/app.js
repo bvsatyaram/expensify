@@ -17,7 +17,7 @@ class Action extends React.Component {
 
 class Option extends React.Component {
   render () {
-    return <p>Option</p>
+    return <p>{this.props.children}</p>
   }
 }
 
@@ -25,9 +25,8 @@ class Options extends React.Component {
   render () {
     return (
       <div>
-        <Option />
-        <Option />
-        <Option />
+        <p>There are {this.props.options.length} item(s).</p>
+        {this.props.options.map((name, index) => <Option key={`option-${index}`}>{name}</Option>)}
       </div>
     );
   }
@@ -46,11 +45,17 @@ class NewOption extends React.Component {
 
 class App extends React.Component {
   render () {
+    const options = [
+      'Eat',
+      'Sleep',
+      'Code'
+    ];
+
     return (
       <main>
         <Header />
         <Action />
-        <Options />
+        <Options options={options} />
         <NewOption />
       </main>
     );
