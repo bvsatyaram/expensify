@@ -1,50 +1,50 @@
-const appData = {
-  title: 'Indecision App',
-  subTitle: 'Organize your work!',
-  options: ['Options 1', 'Options 2']
-};
-
-const onFormSubmit = (e) => {
-  e.preventDefault();
-
-  const option = e.target.elements.option.value;
-  if (option) {
-    appData.options.push(option);
+class Header extends React.Component {
+  render () {
+    return (
+      <header>
+        <h1>Indecision App</h1>
+        <h2>Put your life in the hands of a computer!</h2>
+      </header>
+    );
   }
-  e.target.elements.option.value = '';
-  renderApp();
-};
-
-const clearOptions = (e) => {
-  e.preventDefault();
-
-  appData.options = [];
-  renderApp();
 }
 
-const appRoot = document.getElementById('app');
+class Action extends React.Component {
+  render () {
+    return <button>What should I do?</button>;
+  }
+}
 
-const renderApp = () => {
-  const template = (
-    <div>
-      <h1>{appData.title}</h1>
-      <p>{appData.subTitle}</p>
-      <ul>
-        {
-          appData.options.map((option, index) => {
-            return <li key={'option-' + index}>{option}</li>
-          })
-        }
-      </ul>
-      <form onSubmit={onFormSubmit}>
-        <input type='text' name='option' autoFocus />
-        <button type='submit'>Add Option</button>
-        <button onClick={clearOptions}>Remove All</button>
+class Options extends React.Component {
+  render () {
+    return (
+      <p>Options will come here...</p>
+    );
+  }
+}
+
+class NewOption extends React.Component {
+  render () {
+    return (
+      <form>
+        <input type='text' />
+        <button type='submit'>Add a New Option</button>
       </form>
-    </div>
-  );
-  
-  ReactDOM.render(template, appRoot);
+    )
+  }
 }
 
-renderApp();
+class App extends React.Component {
+  render () {
+    return (
+      <main>
+        <Header />
+        <Action />
+        <Options />
+        <NewOption />
+      </main>
+    );
+  }
+}
+
+ReactDOM.render(<App />, document.getElementById('app'));

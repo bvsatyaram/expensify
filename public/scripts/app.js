@@ -1,74 +1,143 @@
 'use strict';
 
-var appData = {
-  title: 'Indecision App',
-  subTitle: 'Organize your work!',
-  options: ['Options 1', 'Options 2']
-};
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-var onFormSubmit = function onFormSubmit(e) {
-  e.preventDefault();
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-  var option = e.target.elements.option.value;
-  if (option) {
-    appData.options.push(option);
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var Header = function (_React$Component) {
+  _inherits(Header, _React$Component);
+
+  function Header() {
+    _classCallCheck(this, Header);
+
+    return _possibleConstructorReturn(this, (Header.__proto__ || Object.getPrototypeOf(Header)).apply(this, arguments));
   }
-  e.target.elements.option.value = '';
-  renderApp();
-};
 
-var clearOptions = function clearOptions(e) {
-  e.preventDefault();
+  _createClass(Header, [{
+    key: 'render',
+    value: function render() {
+      return React.createElement(
+        'header',
+        null,
+        React.createElement(
+          'h1',
+          null,
+          'Indecision App'
+        ),
+        React.createElement(
+          'h2',
+          null,
+          'Put your life in the hands of a computer!'
+        )
+      );
+    }
+  }]);
 
-  appData.options = [];
-  renderApp();
-};
+  return Header;
+}(React.Component);
 
-var appRoot = document.getElementById('app');
+var Action = function (_React$Component2) {
+  _inherits(Action, _React$Component2);
 
-var renderApp = function renderApp() {
-  var template = React.createElement(
-    'div',
-    null,
-    React.createElement(
-      'h1',
-      null,
-      appData.title
-    ),
-    React.createElement(
-      'p',
-      null,
-      appData.subTitle
-    ),
-    React.createElement(
-      'ul',
-      null,
-      appData.options.map(function (option, index) {
-        return React.createElement(
-          'li',
-          { key: 'option-' + index },
-          option
-        );
-      })
-    ),
-    React.createElement(
-      'form',
-      { onSubmit: onFormSubmit },
-      React.createElement('input', { type: 'text', name: 'option', autoFocus: true }),
-      React.createElement(
+  function Action() {
+    _classCallCheck(this, Action);
+
+    return _possibleConstructorReturn(this, (Action.__proto__ || Object.getPrototypeOf(Action)).apply(this, arguments));
+  }
+
+  _createClass(Action, [{
+    key: 'render',
+    value: function render() {
+      return React.createElement(
         'button',
-        { type: 'submit' },
-        'Add Option'
-      ),
-      React.createElement(
-        'button',
-        { onClick: clearOptions },
-        'Remove All'
-      )
-    )
-  );
+        null,
+        'What should I do?'
+      );
+    }
+  }]);
 
-  ReactDOM.render(template, appRoot);
-};
+  return Action;
+}(React.Component);
 
-renderApp();
+var Options = function (_React$Component3) {
+  _inherits(Options, _React$Component3);
+
+  function Options() {
+    _classCallCheck(this, Options);
+
+    return _possibleConstructorReturn(this, (Options.__proto__ || Object.getPrototypeOf(Options)).apply(this, arguments));
+  }
+
+  _createClass(Options, [{
+    key: 'render',
+    value: function render() {
+      return React.createElement(
+        'p',
+        null,
+        'Options will come here...'
+      );
+    }
+  }]);
+
+  return Options;
+}(React.Component);
+
+var NewOption = function (_React$Component4) {
+  _inherits(NewOption, _React$Component4);
+
+  function NewOption() {
+    _classCallCheck(this, NewOption);
+
+    return _possibleConstructorReturn(this, (NewOption.__proto__ || Object.getPrototypeOf(NewOption)).apply(this, arguments));
+  }
+
+  _createClass(NewOption, [{
+    key: 'render',
+    value: function render() {
+      return React.createElement(
+        'form',
+        null,
+        React.createElement('input', { type: 'text' }),
+        React.createElement(
+          'button',
+          { type: 'submit' },
+          'Add a New Option'
+        )
+      );
+    }
+  }]);
+
+  return NewOption;
+}(React.Component);
+
+var App = function (_React$Component5) {
+  _inherits(App, _React$Component5);
+
+  function App() {
+    _classCallCheck(this, App);
+
+    return _possibleConstructorReturn(this, (App.__proto__ || Object.getPrototypeOf(App)).apply(this, arguments));
+  }
+
+  _createClass(App, [{
+    key: 'render',
+    value: function render() {
+      return React.createElement(
+        'main',
+        null,
+        React.createElement(Header, null),
+        React.createElement(Action, null),
+        React.createElement(Options, null),
+        React.createElement(NewOption, null)
+      );
+    }
+  }]);
+
+  return App;
+}(React.Component);
+
+ReactDOM.render(React.createElement(App, null), document.getElementById('app'));
