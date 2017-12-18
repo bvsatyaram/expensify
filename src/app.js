@@ -15,10 +15,20 @@ class Action extends React.Component {
   }
 }
 
+class Option extends React.Component {
+  render () {
+    return <p>Option</p>
+  }
+}
+
 class Options extends React.Component {
   render () {
     return (
-      <p>Options will come here...</p>
+      <div>
+        <Option />
+        <Option />
+        <Option />
+      </div>
     );
   }
 }
