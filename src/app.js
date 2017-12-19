@@ -10,18 +10,35 @@ class Header extends React.Component {
 }
 
 class Action extends React.Component {
-  handleClick () {
-    console.log('Action clicked');
-  }
-
   render () {
-    return <button onClick={this.handleClick}>What should I do?</button>;
+    return <button
+      onClick={this.props.pickOption}
+      disabled={!this.props.hasOptions}
+    >
+      What should I do?
+    </button>;
   }
 }
 
 class Option extends React.Component {
+  constructor (props) {
+    super(props);
+    this.removeOption = this.removeOption.bind(this);
+  }
+
+  removeOption (e) {
+    e.preventDefault();
+
+    this.props.removeOption(this.props.optionIndex);
+  }
+
   render () {
-    return <p>{this.props.children}</p>
+    return (
+      <p>
+        {this.props.children}
+        <a href='#' onClick={this.removeOption}>(remove)</a>
+      </p>
+    );
   }
 }
 
@@ -30,26 +47,50 @@ class Options extends React.Component {
     return (
       <div>
         <p>There are {this.props.options.length} item(s).</p>
-        {this.props.options.map((name, index) => <Option key={`option-${index}`}>{name}</Option>)}
+        {
+          this.props.options.map((name, index) => {
+            return (
+              <Option
+                key={`option-${index}`}
+                optionIndex={index}
+                removeOption={this.props.removeOption}
+              >
+                {name}
+              </Option>)
+          })
+        }
       </div>
     );
   }
 }
 
 class NewOption extends React.Component {
+  constructor (props) {
+    super(props);
+    this.addOption = this.addOption.bind(this);
+    this.changeNewOption = this.changeNewOption.bind(this);
+  }
+
   addOption (e) {
     e.preventDefault();
-    console.log('Handle add option');
-    const val = e.target.elements.newOption.value.trim();
-    if (val) {
-      console.log(`The value is ${val}`)      
-    }
+    this.props.addOption(e.target.elements.newOption.value);
+  }
+
+  changeNewOption (e) {
+    this.props.changeNewOption(e.target.value);
   }
 
   render () {
     return (
       <form onSubmit={this.addOption}>
-        <input type='text' name='newOption' />
+        <input
+          type='text'
+          name='newOption'
+          value={this.props.newOption}
+          onChange={this.changeNewOption}
+          ref={input => input && input.focus()}
+          autoFocus
+        />
         <button type='submit'>Add a New Option</button>
         <button onClick={this.props.clearOptions}>Clear All Options</button>
       </form>
@@ -61,27 +102,81 @@ class App extends React.Component {
   constructor (props) {
     super(props);
 
-    this.options = [
-      'Eat',
-      'Sleep',
-      'Code'
-    ];
+    this.state = {
+      options: [
+        'Eat',
+        'Sleep',
+        'Code'
+      ],
+      newOption: ''
+    };
 
     this.clearOptions = this.clearOptions.bind(this);
+    this.pickOption = this.pickOption.bind(this);
+    this.addOption = this.addOption.bind(this);
+    this.removeOption = this.removeOption.bind(this);
+    this.changeNewOption = this.changeNewOption.bind(this);
   }
 
   clearOptions (e) {
     e.preventDefault();
-    console.log(this.options);
+    this.setState((prevState) => {
+      return { options: [] }
+    });
+  }
+
+  pickOption () {
+    const options = this.state.options;
+    console.log(options[Math.floor(Math.random() * options.length)]);
+  }
+
+  addOption (val) {
+    val = val.trim();
+    if (val) {
+      this.setState((prevState) => {
+        let options = prevState.options
+        options.push(val);
+        return {
+          options: options,
+          newOption: ''
+        }
+      })
+    }
+  }
+
+  removeOption (index) {
+    let options = this.state.options;
+    options.splice(index, 1);
+    this.setState((prevState) => {
+      return {
+        options: options
+      };
+    })
+  }
+
+  changeNewOption (val) {
+    this.setState(() => {
+      return {
+        newOption: val
+      }
+    });
   }
 
   render () {
     return (
       <main>
         <Header />
-        <Action />
-        <Options options={this.options} />
-        <NewOption clearOptions={this.clearOptions} />
+        <Action
+          hasOptions={this.state.options.length > 0}
+          pickOption={this.pickOption}
+        />
+        <Options options={this.state.options} removeOption={this.removeOption} />
+        <NewOption
+          clearOptions={this.clearOptions}
+          addOption={this.addOption}
+          newOption={this.state.newOption}
+          changeNewOption={this.changeNewOption}
+        />
       </main>
     );
   }
