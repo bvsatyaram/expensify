@@ -43,7 +43,7 @@ class Option extends React.Component {
 const Options = (props) => {
   return (
     <div>
-      <p>There are {props.options.length} item(s).</p>
+      {(props.options.length == 0) && <p>Please add an option to get started.</p>}
       {
         props.options.map((name, index) => {
           return (
@@ -93,11 +93,7 @@ class App extends React.Component {
     super(props);
 
     this.state = {
-      options: [
-        'Eat',
-        'Sleep',
-        'Code'
-      ],
+      options: [],
       newOption: ''
     };
 
@@ -107,11 +103,21 @@ class App extends React.Component {
     this.removeOption = this.removeOption.bind(this);
   }
 
+  componentDidMount () {
+    const options = JSON.parse(localStorage.getItem('options')) || [];
+
+    this.setState(() => ({options}));
+  }
+
+  componentDidUpdate (preProps, prevState) {
+    if (prevState.options.length !== this.state.options.length) {
+      localStorage.setItem('options', JSON.stringify(this.state.options));
+    }
+  }
+
   clearOptions (e) {
     e.preventDefault();
-    this.setState((prevState) => {
-      return { options: [] }
-    });
+    this.setState((prevState) => ({ options: [] }));
   }
 
   pickOption () {
@@ -124,7 +130,7 @@ class App extends React.Component {
     if (val) {
       this.setState((prevState) => {
         let options = prevState.options
-        options.push(val);
+        options = options.concat(val);
         return {
           options: options,
           newOption: ''
@@ -134,13 +140,9 @@ class App extends React.Component {
   }
 
   removeOption (index) {
-    let options = this.state.options;
+    let options = [...this.state.options];
     options.splice(index, 1);
-    this.setState((prevState) => {
-      return {
-        options: options
-      };
-    })
+    this.setState((prevState) => ({ options: options }));
   }
 
   render () {
