@@ -68,16 +68,12 @@ class NewOption extends React.Component {
   constructor (props) {
     super(props);
     this.addOption = this.addOption.bind(this);
-    this.changeNewOption = this.changeNewOption.bind(this);
   }
 
   addOption (e) {
     e.preventDefault();
     this.props.addOption(e.target.elements.newOption.value);
-  }
-
-  changeNewOption (e) {
-    this.props.changeNewOption(e.target.value);
+    e.target.elements.newOption.value = '';
   }
 
   render () {
@@ -86,8 +82,6 @@ class NewOption extends React.Component {
         <input
           type='text'
           name='newOption'
-          value={this.props.newOption}
-          onChange={this.changeNewOption}
           ref={input => input && input.focus()}
           autoFocus
         />
@@ -115,7 +109,6 @@ class App extends React.Component {
     this.pickOption = this.pickOption.bind(this);
     this.addOption = this.addOption.bind(this);
     this.removeOption = this.removeOption.bind(this);
-    this.changeNewOption = this.changeNewOption.bind(this);
   }
 
   clearOptions (e) {
@@ -154,14 +147,6 @@ class App extends React.Component {
     })
   }
 
-  changeNewOption (val) {
-    this.setState(() => {
-      return {
-        newOption: val
-      }
-    });
-  }
-
   render () {
     return (
       <main>
@@ -175,7 +160,6 @@ class App extends React.Component {
           clearOptions={this.clearOptions}
           addOption={this.addOption}
           newOption={this.state.newOption}
-          changeNewOption={this.changeNewOption}
         />
       </main>
     );

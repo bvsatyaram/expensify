@@ -155,7 +155,6 @@ var NewOption = function (_React$Component5) {
     var _this6 = _possibleConstructorReturn(this, (NewOption.__proto__ || Object.getPrototypeOf(NewOption)).call(this, props));
 
     _this6.addOption = _this6.addOption.bind(_this6);
-    _this6.changeNewOption = _this6.changeNewOption.bind(_this6);
     return _this6;
   }
 
@@ -164,11 +163,7 @@ var NewOption = function (_React$Component5) {
     value: function addOption(e) {
       e.preventDefault();
       this.props.addOption(e.target.elements.newOption.value);
-    }
-  }, {
-    key: 'changeNewOption',
-    value: function changeNewOption(e) {
-      this.props.changeNewOption(e.target.value);
+      e.target.elements.newOption.value = '';
     }
   }, {
     key: 'render',
@@ -179,8 +174,6 @@ var NewOption = function (_React$Component5) {
         React.createElement('input', {
           type: 'text',
           name: 'newOption',
-          value: this.props.newOption,
-          onChange: this.changeNewOption,
           ref: function ref(input) {
             return input && input.focus();
           },
@@ -220,7 +213,6 @@ var App = function (_React$Component6) {
     _this7.pickOption = _this7.pickOption.bind(_this7);
     _this7.addOption = _this7.addOption.bind(_this7);
     _this7.removeOption = _this7.removeOption.bind(_this7);
-    _this7.changeNewOption = _this7.changeNewOption.bind(_this7);
     return _this7;
   }
 
@@ -265,15 +257,6 @@ var App = function (_React$Component6) {
       });
     }
   }, {
-    key: 'changeNewOption',
-    value: function changeNewOption(val) {
-      this.setState(function () {
-        return {
-          newOption: val
-        };
-      });
-    }
-  }, {
     key: 'render',
     value: function render() {
       return React.createElement(
@@ -288,8 +271,7 @@ var App = function (_React$Component6) {
         React.createElement(NewOption, {
           clearOptions: this.clearOptions,
           addOption: this.addOption,
-          newOption: this.state.newOption,
-          changeNewOption: this.changeNewOption
+          newOption: this.state.newOption
         })
       );
     }
