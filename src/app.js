@@ -1,23 +1,21 @@
-class Header extends React.Component {
-  render () {
-    return (
-      <header>
-        <h1>Indecision App</h1>
-        <h2>Put your life in the hands of a computer!</h2>
-      </header>
-    );
-  }
+const Header = () => {
+  return (
+    <header>
+      <h1>Indecision App</h1>
+      <h2>Put your life in the hands of a computer!</h2>
+    </header>
+  );
 }
 
-class Action extends React.Component {
-  render () {
-    return <button
-      onClick={this.props.pickOption}
-      disabled={!this.props.hasOptions}
+const Action = (props) => {
+  return (
+    <button
+      onClick={props.pickOption}
+      disabled={!props.hasOptions}
     >
       What should I do?
-    </button>;
-  }
+    </button>
+  );
 }
 
 class Option extends React.Component {
@@ -42,26 +40,24 @@ class Option extends React.Component {
   }
 }
 
-class Options extends React.Component {
-  render () {
-    return (
-      <div>
-        <p>There are {this.props.options.length} item(s).</p>
-        {
-          this.props.options.map((name, index) => {
-            return (
-              <Option
-                key={`option-${index}`}
-                optionIndex={index}
-                removeOption={this.props.removeOption}
-              >
-                {name}
-              </Option>)
-          })
-        }
-      </div>
-    );
-  }
+const Options = (props) => {
+  return (
+    <div>
+      <p>There are {props.options.length} item(s).</p>
+      {
+        props.options.map((name, index) => {
+          return (
+            <Option
+              key={`option-${index}`}
+              optionIndex={index}
+              removeOption={props.removeOption}
+            >
+              {name}
+            </Option>)
+        })
+      }
+    </div>
+  );
 }
 
 class NewOption extends React.Component {
