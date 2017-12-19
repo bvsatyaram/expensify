@@ -5,8 +5,15 @@
   "repository": "git@github.com:bvsatyaram/indecision-app.git",
   "author": "BV Satyaram <bvsatyaram@gmail.com>",
   "license": "MIT",
+  "scripts": {
+    "serve": "live-server public/",
+    "build": "webpack --watch",
+    "build-babel": "babel src/app.js --out-file=public/scripts/app.js --presets=env,react --watch"
+  },
   "dependencies": {
-    "live-server": "^1.2.0"
+    "babel-cli": "^6.26.0",
+    "live-server": "^1.2.0",
+    "webpack": "^3.10.0"
   },
   "devDependencies": {
     "babel": "^6.23.0",
