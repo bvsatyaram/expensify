@@ -1,6 +1,5 @@
-import canDrink, {isAdult} from './utils';
+import React from 'react';
+import ReactDOM from 'react-dom';
 
-[17, 18, 19, 20, 21, 22].forEach((age) => {
-  console.log(`${age} year old is an adult: ${isAdult(age)}`);
-  console.log(`${age} year old can drink: ${canDrink(age)}`);
-})
+const template = <p>Hello, World!!</p>;
+ReactDOM.render(template, document.getElementById('app'));
