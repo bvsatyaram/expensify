@@ -1,16 +1,11 @@
 import React from 'react';
 
 export default class NewOption extends React.Component {
-  constructor (props) {
-    super(props);
-    this.addOption = this.addOption.bind(this);
-  }
-
-  addOption (e) {
+  addOption = (e) => {
     e.preventDefault();
     this.props.addOption(e.target.elements.newOption.value);
     e.target.elements.newOption.value = '';
-  }
+  };
 
   render () {
     return (

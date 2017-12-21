@@ -1,16 +1,11 @@
 import React from 'react';
 
 export default class Option extends React.Component {
-  constructor (props) {
-    super(props);
-    this.removeOption = this.removeOption.bind(this);
-  }
-
-  removeOption (e) {
+  removeOption = (e) => {
     e.preventDefault();
 
     this.props.removeOption(this.props.optionIndex);
-  }
+  };
 
   render () {
     return (

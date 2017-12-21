@@ -5,43 +5,21 @@ import Options from './Options';
 import NewOption from './NewOption';
 
 export default class App extends React.Component {
-  constructor (props) {
-    super(props);
-
-    this.state = {
-      options: [],
-      newOption: ''
-    };
-
-    this.clearOptions = this.clearOptions.bind(this);
-    this.pickOption = this.pickOption.bind(this);
-    this.addOption = this.addOption.bind(this);
-    this.removeOption = this.removeOption.bind(this);
-  }
-
-  componentDidMount () {
-    const options = JSON.parse(localStorage.getItem('options')) || [];
-
-    this.setState(() => ({options}));
-  }
-
-  componentDidUpdate (preProps, prevState) {
-    if (prevState.options.length !== this.state.options.length) {
-      localStorage.setItem('options', JSON.stringify(this.state.options));
-    }
-  }
-
-  clearOptions (e) {
+  state = {
+    options: []
+  };
+  
+  clearOptions = (e) => {
     e.preventDefault();
     this.setState((prevState) => ({ options: [] }));
-  }
+  };
 
-  pickOption () {
+  pickOption = () => {
     const options = this.state.options;
     console.log(options[Math.floor(Math.random() * options.length)]);
-  }
+  };
 
-  addOption (val) {
+  addOption = (val) => {
     val = val.trim();
     if (val) {
       this.setState((prevState) => {
@@ -53,12 +31,24 @@ export default class App extends React.Component {
         }
       })
     }
-  }
+  };
 
-  removeOption (index) {
+  removeOption = (index) => {
     let options = [...this.state.options];
     options.splice(index, 1);
     this.setState((prevState) => ({ options: options }));
+  };
+
+  componentDidMount () {
+    const options = JSON.parse(localStorage.getItem('options')) || [];
+
+    this.setState(() => ({options}));
+  }
+
+  componentDidUpdate (preProps, prevState) {
+    if (prevState.options.length !== this.state.options.length) {
+      localStorage.setItem('options', JSON.stringify(this.state.options));
+    }
   }
 
   render () {
@@ -73,7 +63,6 @@ export default class App extends React.Component {
         <NewOption
           clearOptions={this.clearOptions}
           addOption={this.addOption}
-          newOption={this.state.newOption}
         />
       </main>
     );
