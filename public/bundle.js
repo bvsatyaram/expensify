@@ -948,14 +948,13 @@ var _reactDom = __webpack_require__(18);
 
 var _reactDom2 = _interopRequireDefault(_reactDom);
 
+var _App = __webpack_require__(32);
+
+var _App2 = _interopRequireDefault(_App);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var template = _react2.default.createElement(
-  'p',
-  null,
-  'Hello, World!!'
-);
-_reactDom2.default.render(template, document.getElementById('app'));
+_reactDom2.default.render(_react2.default.createElement(_App2.default, null), document.getElementById('app'));
 
 /***/ }),
 /* 15 */
@@ -18264,6 +18263,403 @@ function camelize(string) {
 }
 
 module.exports = camelize;
+
+/***/ }),
+/* 27 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _react = __webpack_require__(4);
+
+var _react2 = _interopRequireDefault(_react);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var Header = function Header() {
+  return _react2.default.createElement(
+    'header',
+    null,
+    _react2.default.createElement(
+      'h1',
+      null,
+      'Indecision App'
+    ),
+    _react2.default.createElement(
+      'h2',
+      null,
+      'Put your life in the hands of a computer!'
+    )
+  );
+};
+
+exports.default = Header;
+
+/***/ }),
+/* 28 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _react = __webpack_require__(4);
+
+var _react2 = _interopRequireDefault(_react);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var Action = function Action(props) {
+  return _react2.default.createElement(
+    'button',
+    {
+      onClick: props.pickOption,
+      disabled: !props.hasOptions
+    },
+    'What should I do?'
+  );
+};
+
+exports.default = Action;
+
+/***/ }),
+/* 29 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _react = __webpack_require__(4);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _Option = __webpack_require__(30);
+
+var _Option2 = _interopRequireDefault(_Option);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var Options = function Options(props) {
+  return _react2.default.createElement(
+    'div',
+    null,
+    props.options.length == 0 && _react2.default.createElement(
+      'p',
+      null,
+      'Please add an option to get started.'
+    ),
+    props.options.map(function (name, index) {
+      return _react2.default.createElement(
+        _Option2.default,
+        {
+          key: 'option-' + index,
+          optionIndex: index,
+          removeOption: props.removeOption
+        },
+        name
+      );
+    })
+  );
+};
+
+exports.default = Options;
+
+/***/ }),
+/* 30 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(4);
+
+var _react2 = _interopRequireDefault(_react);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var Option = function (_React$Component) {
+  _inherits(Option, _React$Component);
+
+  function Option(props) {
+    _classCallCheck(this, Option);
+
+    var _this = _possibleConstructorReturn(this, (Option.__proto__ || Object.getPrototypeOf(Option)).call(this, props));
+
+    _this.removeOption = _this.removeOption.bind(_this);
+    return _this;
+  }
+
+  _createClass(Option, [{
+    key: 'removeOption',
+    value: function removeOption(e) {
+      e.preventDefault();
+
+      this.props.removeOption(this.props.optionIndex);
+    }
+  }, {
+    key: 'render',
+    value: function render() {
+      return _react2.default.createElement(
+        'p',
+        null,
+        this.props.children,
+        _react2.default.createElement(
+          'a',
+          { href: '#', onClick: this.removeOption },
+          '(remove)'
+        )
+      );
+    }
+  }]);
+
+  return Option;
+}(_react2.default.Component);
+
+exports.default = Option;
+
+/***/ }),
+/* 31 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(4);
+
+var _react2 = _interopRequireDefault(_react);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var NewOption = function (_React$Component) {
+  _inherits(NewOption, _React$Component);
+
+  function NewOption(props) {
+    _classCallCheck(this, NewOption);
+
+    var _this = _possibleConstructorReturn(this, (NewOption.__proto__ || Object.getPrototypeOf(NewOption)).call(this, props));
+
+    _this.addOption = _this.addOption.bind(_this);
+    return _this;
+  }
+
+  _createClass(NewOption, [{
+    key: 'addOption',
+    value: function addOption(e) {
+      e.preventDefault();
+      this.props.addOption(e.target.elements.newOption.value);
+      e.target.elements.newOption.value = '';
+    }
+  }, {
+    key: 'render',
+    value: function render() {
+      return _react2.default.createElement(
+        'form',
+        { onSubmit: this.addOption },
+        _react2.default.createElement('input', {
+          type: 'text',
+          name: 'newOption',
+          ref: function ref(input) {
+            return input && input.focus();
+          },
+          autoFocus: true
+        }),
+        _react2.default.createElement(
+          'button',
+          { type: 'submit' },
+          'Add a New Option'
+        ),
+        _react2.default.createElement(
+          'button',
+          { onClick: this.props.clearOptions },
+          'Clear All Options'
+        )
+      );
+    }
+  }]);
+
+  return NewOption;
+}(_react2.default.Component);
+
+exports.default = NewOption;
+
+/***/ }),
+/* 32 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(4);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _Header = __webpack_require__(27);
+
+var _Header2 = _interopRequireDefault(_Header);
+
+var _Action = __webpack_require__(28);
+
+var _Action2 = _interopRequireDefault(_Action);
+
+var _Options = __webpack_require__(29);
+
+var _Options2 = _interopRequireDefault(_Options);
+
+var _NewOption = __webpack_require__(31);
+
+var _NewOption2 = _interopRequireDefault(_NewOption);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var App = function (_React$Component) {
+  _inherits(App, _React$Component);
+
+  function App(props) {
+    _classCallCheck(this, App);
+
+    var _this = _possibleConstructorReturn(this, (App.__proto__ || Object.getPrototypeOf(App)).call(this, props));
+
+    _this.state = {
+      options: [],
+      newOption: ''
+    };
+
+    _this.clearOptions = _this.clearOptions.bind(_this);
+    _this.pickOption = _this.pickOption.bind(_this);
+    _this.addOption = _this.addOption.bind(_this);
+    _this.removeOption = _this.removeOption.bind(_this);
+    return _this;
+  }
+
+  _createClass(App, [{
+    key: 'componentDidMount',
+    value: function componentDidMount() {
+      var options = JSON.parse(localStorage.getItem('options')) || [];
+
+      this.setState(function () {
+        return { options: options };
+      });
+    }
+  }, {
+    key: 'componentDidUpdate',
+    value: function componentDidUpdate(preProps, prevState) {
+      if (prevState.options.length !== this.state.options.length) {
+        localStorage.setItem('options', JSON.stringify(this.state.options));
+      }
+    }
+  }, {
+    key: 'clearOptions',
+    value: function clearOptions(e) {
+      e.preventDefault();
+      this.setState(function (prevState) {
+        return { options: [] };
+      });
+    }
+  }, {
+    key: 'pickOption',
+    value: function pickOption() {
+      var options = this.state.options;
+      console.log(options[Math.floor(Math.random() * options.length)]);
+    }
+  }, {
+    key: 'addOption',
+    value: function addOption(val) {
+      val = val.trim();
+      if (val) {
+        this.setState(function (prevState) {
+          var options = prevState.options;
+          options = options.concat(val);
+          return {
+            options: options,
+            newOption: ''
+          };
+        });
+      }
+    }
+  }, {
+    key: 'removeOption',
+    value: function removeOption(index) {
+      var options = [].concat(_toConsumableArray(this.state.options));
+      options.splice(index, 1);
+      this.setState(function (prevState) {
+        return { options: options };
+      });
+    }
+  }, {
+    key: 'render',
+    value: function render() {
+      return _react2.default.createElement(
+        'main',
+        null,
+        _react2.default.createElement(_Header2.default, null),
+        _react2.default.createElement(_Action2.default, {
+          hasOptions: this.state.options.length > 0,
+          pickOption: this.pickOption
+        }),
+        _react2.default.createElement(_Options2.default, { options: this.state.options, removeOption: this.removeOption }),
+        _react2.default.createElement(_NewOption2.default, {
+          clearOptions: this.clearOptions,
+          addOption: this.addOption,
+          newOption: this.state.newOption
+        })
+      );
+    }
+  }]);
+
+  return App;
+}(_react2.default.Component);
+
+exports.default = App;
 
 /***/ })
 /******/ ]);
