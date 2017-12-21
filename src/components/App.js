@@ -3,10 +3,12 @@ import Header from './Header';
 import Action from './Action';
 import Options from './Options';
 import NewOption from './NewOption';
+import OptionModal from './OptionModal';
 
 export default class App extends React.Component {
   state = {
-    options: []
+    options: [],
+    selectedOption: undefined
   };
   
   clearOptions = (e) => {
@@ -16,8 +18,13 @@ export default class App extends React.Component {
 
   pickOption = () => {
     const options = this.state.options;
-    console.log(options[Math.floor(Math.random() * options.length)]);
+    const selectedOption = options[Math.floor(Math.random() * options.length)];
+    this.setState(() => ({selectedOption}))
   };
+
+  unPickOption = () => {
+    this.setState(() => ({selectedOption: undefined}));
+  }
 
   addOption = (val) => {
     val = val.trim();
@@ -64,6 +71,7 @@ export default class App extends React.Component {
           clearOptions={this.clearOptions}
           addOption={this.addOption}
         />
+        <OptionModal selectedOption={this.state.selectedOption} unPickOption={this.unPickOption} />
       </main>
     );
   }
