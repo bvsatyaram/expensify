@@ -3,13 +3,16 @@ import Option from './Option';
 
 const Options = (props) => (
   <div>
-    {(props.options.length == 0) && <p>Please add an option to get started.</p>}
-    <button
-      className='button-link'
-      onClick={props.clearOptions}
-    >
-      Clear All Options
-    </button>
+    <div className='widget__header'>
+    <h3>Your Options</h3>
+      <button
+        className='button-link'
+        onClick={props.clearOptions}
+      >
+        Remove All
+      </button>
+    </div>
+    {(props.options.length == 0) && <div className='widget__message'>Please add an option to get started.</div>}
     {
       props.options.map((name, index) => {
         return (
