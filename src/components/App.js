@@ -62,16 +62,18 @@ export default class App extends React.Component {
     return (
       <main>
         <Header />
-        <Action
-          hasOptions={this.state.options.length > 0}
-          pickOption={this.pickOption}
-        />
-        <Options options={this.state.options} removeOption={this.removeOption} />
-        <NewOption
-          clearOptions={this.clearOptions}
-          addOption={this.addOption}
-        />
-        <OptionModal selectedOption={this.state.selectedOption} unPickOption={this.unPickOption} />
+        <div className='container'>
+          <Action
+            hasOptions={this.state.options.length > 0}
+            pickOption={this.pickOption}
+          />
+          <Options options={this.state.options} removeOption={this.removeOption} />
+          <NewOption
+            clearOptions={this.clearOptions}
+            addOption={this.addOption}
+          />
+          <OptionModal selectedOption={this.state.selectedOption} unPickOption={this.unPickOption} />
+        </div>
       </main>
     );
   }
