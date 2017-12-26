@@ -7,6 +7,8 @@ const OptionModal = (props) => (
     contentLabel={'Selected Option'}
     appElement={document.getElementById('app')}
     onRequestClose={props.unPickOption}
+    closeTimeoutMS={300}
+    className='modal'
   >
     <h3>Selected Options</h3>
     <p>{props.selectedOption}</p>

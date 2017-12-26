@@ -77,8 +77,8 @@ export default class App extends React.Component {
               addOption={this.addOption}
             />
           </div>
-          <OptionModal selectedOption={this.state.selectedOption} unPickOption={this.unPickOption} />
         </div>
+        <OptionModal selectedOption={this.state.selectedOption} unPickOption={this.unPickOption} />
       </main>
     );
   }
