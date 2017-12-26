@@ -9,8 +9,16 @@ module.exports = {
   module: {
     rules: [{
       loader: 'babel-loader',
-      test: /.js$/,
+      test: /\.js$/,
       exclude: /node_modules/
+    }, {
+      test: /\.scss$/,
+      exclude: /node_modules/,
+      use: [
+        'style-loader',
+        'css-loader',
+        'sass-loader'
+      ]
     }]
   },
   devtool: 'cheap-module-eval-source-map',
