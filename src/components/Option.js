@@ -9,8 +9,8 @@ export default class Option extends React.Component {
 
   render () {
     return (
-      <p>
-        {this.props.children}
+      <div className='option'>
+        <p>{this.props.count}. {this.props.children}</p>
         <button
           className='button-link'
           href='#'
@@ -18,7 +18,7 @@ export default class Option extends React.Component {
         >
           remove
         </button>
-      </p>
+      </div>
     );
   }
 }

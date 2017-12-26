@@ -9,11 +9,9 @@ button {
   &.button-link {
     background-color: transparent;
     border: none;
-    border-bottom: 0.2rem dotted transparent;
     color: $secondary-color;
 
     &:hover {
-      border-color: $secondary-color;
       opacity: 0.8;
     }
   }

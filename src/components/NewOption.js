@@ -9,7 +9,7 @@ export default class NewOption extends React.Component {
 
   render () {
     return (
-      <form onSubmit={this.addOption}>
+      <form onSubmit={this.addOption} className='add_option'>
         <input
           type='text'
           name='newOption'

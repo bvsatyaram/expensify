@@ -1,0 +1,14 @@
+.add_option {
+  display: flex;
+  padding: $size-m;
+
+  input {
+    background-color: $primary-color;
+    border: none;
+    border-bottom: 0.3rem solid darken($primary-color, 10%);
+    color: $secondary-color;
+    flex-grow: 1;
+    padding: 0 $size-s;
+    margin-right: $size-s;
+  }
+}

@@ -18,6 +18,7 @@ const Options = (props) => (
         return (
           <Option
             key={`option-${index}`}
+            count={index + 1}
             optionIndex={index}
             removeOption={props.removeOption}
           >
