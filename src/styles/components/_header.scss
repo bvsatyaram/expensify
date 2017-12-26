@@ -1,0 +1,13 @@
+header {
+  background-color: $primary-color;
+
+  h1 {
+    color: $dark-color;
+    font-size: 2.2rem;
+  }
+
+  h2 {
+    color: lighten($dark-color, 10%);
+    font-size: 1.6rem;
+  }
+}
