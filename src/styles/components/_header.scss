@@ -1,18 +1,18 @@
 header {
   background-color: $dark-color;
-  margin-bottom: $space-xl;
-  padding: $space-m 0;
+  margin-bottom: $size-xl;
+  padding: $size-m 0;
 
   h1 {
     color: $light-color;
-    font-size: $space-l;
-    margin: $space-m 0;
+    font-size: $size-l;
+    margin: $size-m 0;
   }
 
   h2 {
     color: $primary-color;
-    font-size: $space-m;
+    font-size: $size-m;
     font-weight: normal;
-    margin: 0 0 $space-m;
+    margin: 0 0 $size-m;
   }
 }

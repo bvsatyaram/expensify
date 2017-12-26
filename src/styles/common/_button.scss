@@ -1,0 +1,37 @@
+button {
+  background-color: $secondary-color;
+  border: none;
+  border-bottom: 0.3rem solid darken($secondary-color, 10%);
+  color: $light-color;
+  cursor: pointer;
+  padding: 0.6rem;
+
+  &.button-link {
+    background-color: transparent;
+    border: none;
+    border-bottom: 0.2rem dotted transparent;
+    color: $secondary-color;
+
+    &:hover {
+      border-color: $secondary-color;
+      opacity: 0.8;
+    }
+  }
+
+  &.button-xl {
+    border-bottom-width: 0.6rem;
+    font-size: $size-l;
+    margin-bottom: $size-l;
+    padding: ($size-l + $size-m)/2;
+    width: 100%;
+  }
+  
+  &:hover {
+    opacity: 0.9;
+  }
+
+  &:disabled {
+    cursor: default;
+    opacity: 0.4;
+  }
+}

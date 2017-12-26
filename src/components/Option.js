@@ -11,7 +11,13 @@ export default class Option extends React.Component {
     return (
       <p>
         {this.props.children}
-        <a href='#' onClick={this.removeOption}>(remove)</a>
+        <button
+          className='button-link'
+          href='#'
+          onClick={this.removeOption}
+        >
+          remove
+        </button>
       </p>
     );
   }

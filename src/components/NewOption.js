@@ -17,7 +17,6 @@ export default class NewOption extends React.Component {
           autoFocus
         />
         <button type='submit'>Add a New Option</button>
-        <button onClick={this.props.clearOptions}>Clear All Options</button>
       </form>
     )
   }
