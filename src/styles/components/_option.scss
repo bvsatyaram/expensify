@@ -2,9 +2,15 @@
   border-bottom: 1px solid lighten($dark-color, 40%);
   display: flex;
   justify-content: space-between;
-  padding: $size-m;
+  padding: $size-s;
 
   p {
     word-break: break-all;
+  }
+}
+
+@media (min-width: $desktop-breakpoint) {
+  .option {
+    padding: $size-m;
   }
 }

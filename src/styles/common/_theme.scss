@@ -8,6 +8,8 @@ $default-font:  -apple-system,
                 "Helvetica Neue", 
                 sans-serif;
 
+$desktop-breakpoint: 45rem;
+
 // Colors
 $primary-color: #bada55;
 $secondary-color: #6b9d3e;
@@ -15,6 +17,7 @@ $dark-color: darken($primary-color, 50%);
 $light-color: lighten($primary-color, 30%);
 
 // Spacing
+$size-xs: 0.6rem;
 $size-s: 1rem;
 $size-m: 1.6rem;
 $size-l: 3.2rem;

@@ -4,7 +4,7 @@ button {
   border-bottom: 0.3rem solid darken($secondary-color, 10%);
   color: $light-color;
   cursor: pointer;
-  padding: 0.6rem;
+  padding: $size-xs;
 
   &.button-link {
     background-color: transparent;
@@ -18,9 +18,9 @@ button {
 
   &.button-xl {
     border-bottom-width: 0.6rem;
-    font-size: $size-l;
-    margin-bottom: $size-l;
-    padding: ($size-l + $size-m)/2;
+    font-size: $size-m;
+    margin-bottom: $size-m;
+    padding: $size-m;
     width: 100%;
   }
   
@@ -31,5 +31,13 @@ button {
   &:disabled {
     cursor: default;
     opacity: 0.4;
+  }
+}
+
+@media (min-width: $desktop-breakpoint) {
+  button.button-xl {
+    font-size: $size-m;
+    margin-bottom: $size-m;
+    padding: ($size-l + $size-m)/2;
   }
 }
