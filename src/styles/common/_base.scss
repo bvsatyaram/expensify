@@ -2,3 +2,13 @@ body {
   font-family: $default-font;
   font-size: $size-m;
 }
+
+header nav {
+  display: flex;
+  justify-content: space-between;
+  max-width: 45rem;
+
+  a.active {
+    font-weight: bold;
+  }
+}
